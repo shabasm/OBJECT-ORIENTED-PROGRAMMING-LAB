@@ -1,6 +1,6 @@
 public class MultipleChoiceTestGrader {
     public static void main(String[] args) {
-        int i, j, m = 0;
+        int i, j, m;
         char stud[][] = {
                 { 'D', 'C', 'A', 'B' },
                 { 'C', 'B', 'D', 'A' },
@@ -21,13 +21,13 @@ public class MultipleChoiceTestGrader {
         }
         System.out.println();
         for (i = 0; i < stud.length; i++) {
+            m = 0;
             for (j = 0; j < stud[i].length; j++) {
                 if (stud[i][j] == ans[j]) {
                     m = m + 1;
                 }
             }
             System.out.println("Mark of student " + (i+1) + ":" + m);
-            m = 0;
         }
     }
 }
