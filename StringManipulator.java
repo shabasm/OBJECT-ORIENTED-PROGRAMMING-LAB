@@ -35,8 +35,8 @@ class StringOperations {
 
     void comparison() {
         System.out.println("Enter the string to compare:");
-        String searchString = scanner.next();
-        System.out.println("Strings are equal? " + string1.equals(searchString));
+        String subString = scanner.next();
+        System.out.println("Strings are equal? " + string1.equals(subString));
     }
 
     void modification() {
