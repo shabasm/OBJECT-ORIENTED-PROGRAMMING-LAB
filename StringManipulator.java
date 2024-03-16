@@ -1,11 +1,71 @@
 import java.util.Scanner;
 
 class StringOperations {
-    String inputString1, inputString2;
+    Scanner scanner = new Scanner(System.in);
 
-    public StringOperations(String str1, String str2) {
-        this.inputString1 = str1;
-        this.inputString2 = str2;
+    String string1, string2;
+
+    public StringOperations(String inputString1, String inputString2) {
+        string1 = inputString1;
+        string2 = inputString2;
+    }
+
+    void length() {
+        System.out.println("Length of string 1: " + string1.length());
+        System.out.println("Length of string 2: " + string2.length());
+    }
+
+    void concat() {
+        System.out.println("Concatenated string: " + string1.concat(string2));
+    }
+
+    void extraction() {
+        int position;
+        System.out.println("Enter the position:");
+        position = scanner.nextInt();
+        if (position >= 0 && position < string1.length()) {
+            System.out.println(
+                    "Character at position " + position + ": "
+                            + string1.charAt(position));
+        } else {
+            System.out.println("Invalid position.");
+        }
+
+    }
+
+    void comparison() {
+        System.out.println("Enter the string to compare:");
+        String searchString = scanner.next();
+        System.out.println("Strings are equal? " + string1.equals(searchString));
+    }
+
+    void modification() {
+        System.out.println("Enter the substring you want to replace(String1):");
+        String oldSubstring1 = scanner.next();
+        System.out.println("Enter the new substring:");
+        String newSubstring1 = scanner.next();
+        String modifiedString1 = string1.replace(oldSubstring1, newSubstring1);
+        System.out.println("Modified string: " + modifiedString1);
+
+        System.out.println();
+
+        System.out.println("Enter the substring you want to replace(String2):");
+        String oldSubstring2 = scanner.next();
+        System.out.println("Enter the new substring:");
+        String newSubstring2 = scanner.next();
+        String modifiedString2 = string2.replace(oldSubstring2, newSubstring2);
+        System.out.println("Modified string: " + modifiedString2);
+    }
+
+    void search() {
+        System.out.println("Enter the substring to search for:");
+        String searchString = scanner.next();
+        int index = string1.indexOf(searchString);
+        if (index != -1) {
+            System.out.println("Substring found at index: " + index);
+        } else {
+            System.out.println("Substring not found.");
+        }
     }
 }
 
@@ -18,8 +78,8 @@ class StringManipulator {
             String inputString2 = scanner.next();
             StringOperations stringOps = new StringOperations(inputString1, inputString2);
 
-            int choice, continueChoice, position;
-            String searchString, modifiedString;
+            int choice;
+            char continueChoice;
             System.out.println("----MENU----");
             System.out.println("1. Length\n2. Concatenation\n3. Extraction\n4. Comparison\n5. Modification\n6. Search");
             do {
@@ -27,53 +87,29 @@ class StringManipulator {
                 choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        System.out.println("Length of string 1: " + stringOps.inputString1.length());
-                        System.out.println("Length of string 2: " + stringOps.inputString2.length());
+                        stringOps.length();
                         break;
                     case 2:
-                        System.out.println(
-                                "Concatenated string: " + stringOps.inputString1.concat(stringOps.inputString2));
+                        stringOps.concat();
                         break;
                     case 3:
-                        System.out.println("Enter the position:");
-                        position = scanner.nextInt();
-                        if (position >= 0 && position < stringOps.inputString1.length()) {
-                            System.out.println(
-                                    "Character at position " + position + ": "
-                                            + stringOps.inputString1.charAt(position));
-                        } else {
-                            System.out.println("Invalid position.");
-                        }
+                        stringOps.extraction();
                         break;
                     case 4:
-                        System.out.println("Enter the string to compare:");
-                        searchString = scanner.next();
-                        System.out.println("Strings are equal? " + stringOps.inputString1.equals(searchString));
+                        stringOps.comparison();
                         break;
                     case 5:
-                        System.out.println("Enter the substring you want to replace:");
-                        String oldSubstring = scanner.next();
-                        System.out.println("Enter the new substring:");
-                        String newSubstring = scanner.next();
-                        modifiedString = stringOps.inputString1.replace(oldSubstring, newSubstring);
-                        System.out.println("Modified string: " + modifiedString);
+                        stringOps.modification();
                         break;
                     case 6:
-                        System.out.println("Enter the substring to search for:");
-                        searchString = scanner.next();
-                        int index = stringOps.inputString1.indexOf(searchString);
-                        if (index != -1) {
-                            System.out.println("Substring found at index: " + index);
-                        } else {
-                            System.out.println("Substring not found.");
-                        }
+                        stringOps.search();
                         break;
                     default:
                         System.out.println("Invalid choice.");
                 }
-                System.out.println("Do you wish to continue(1/0)?:");
-                continueChoice = scanner.nextInt();
-            } while (continueChoice == 1);
+                System.out.println("Do you wish to continue(y/n)?:");
+                continueChoice = scanner.next().charAt(0);
+            } while (continueChoice == 'y');
         }
     }
 }
