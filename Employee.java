@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 class EmployeeDatabase {
     Scanner scanner = new Scanner(System.in);
+    
     int i = 0;
     int[] empIdArray = new int[5];
     String[] empNameArray = new String[5];
@@ -24,7 +25,9 @@ class EmployeeDatabase {
     void searchDetail() {
         System.out.println("Enter ID to search:");
         int searchId = scanner.nextInt();
+        
         boolean found = false;
+        
         for (int j = 0; j < i; j++) {
             if (empIdArray[j] == searchId) {
                 System.out.println("Employee ID: " + empIdArray[j]);
@@ -43,7 +46,9 @@ class EmployeeDatabase {
 public class Employee {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in);) {
+            
             int choice, wish;
+            
             EmployeeDatabase empDetail = new EmployeeDatabase();
 
             do {
@@ -56,7 +61,6 @@ public class Employee {
                         empDetail.insertDetail();
                         break;
                     case 2:
-
                         empDetail.searchDetail();
                         break;
                     default:
